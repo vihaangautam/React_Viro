@@ -32,6 +32,7 @@ const InitialScene =(props)=>{
   return(
   <ViroARScene>
     <ViroAmbientLight color="#ffffff"/> 
+    { data.object=== "skull"?
     <Viro3DObject>
       source={require('./assets/Skull_v3_L2.123c1407fc1e-ea5c-4cb9-9072-d28b8aba4c36/Skull_v3_L2.123c1407fc1e-ea5c-4cb9-9072-d28b8aba4c36/12140_Skull_v3_L2.obj')}
       position={[0,0,-5]}
@@ -39,6 +40,16 @@ const InitialScene =(props)=>{
       rotation ={[-45,50,40]}
       type="OBJ"
     </Viro3DObject>
+    :
+    <Viro3DObject>
+      source={require('./assets/57-old_tv/Old_TV/Old_TV.obj')}
+      position={[0,0,-5]}
+      scale={[0.004,0.004,0.004]}
+      rotation ={[-45,50,40]}
+      type="OBJ"
+    </Viro3DObject>
+    }
+    
   
 
   </ViroARScene>
@@ -47,7 +58,7 @@ const InitialScene =(props)=>{
 
 
 export default() => {
-  const [object, setObject]=useState('skull')
+  const [object, setObject]=useState('tv')
   return(
     <View style={styles.mainView}>
     <ViroARSceneNavigator
