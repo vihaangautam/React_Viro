@@ -8,10 +8,13 @@ import {
   ViroBox,
   ViroMaterials,
   ViroAnimations,
+  Viro3DObject,
+  ViroAmbientLight,
 } from "@reactvision/react-viro";
 import { StyleSheet } from "react-native";
 
-const InitialScene =()=>{
+const InitialScene =(props)=>{
+  let data=props.sceneNavigator.viroAppProps
   ViroMaterials.createMaterials({
     wood:{
       diffuseTexture:require('./assets/wood.jpg')
@@ -26,40 +29,41 @@ const InitialScene =()=>{
       }
     }
   })
-  return(<ViroARScene>
-    {/*
-    <ViroText 
-    text={"Hello World"}
-    position={[0,-5,-3]}
-    style={{fontSize:100,fontFamily:'Arial',color:'red'}}
-    /> */}
-    <ViroBox
-    height={2}
-    length={2}
-    width={2}
-    scale={[0.2,0.2,0.2]}
-    position={[0,-1,-1]}
-    materials={["wood"]}
-    animation={{name:'rotate', loop:true,run:true}}
-    />
+  return(
+  <ViroARScene>
+    <ViroAmbientLight color="#ffffff"/> 
+    <Viro3DObject>
+      source={require('./assets/Skull_v3_L2.123c1407fc1e-ea5c-4cb9-9072-d28b8aba4c36/Skull_v3_L2.123c1407fc1e-ea5c-4cb9-9072-d28b8aba4c36/12140_Skull_v3_L2.obj')}
+      position={[0,0,-5]}
+      scale={[0.05,0.05,0.05]}
+      rotation ={[-45,50,40]}
+      type="OBJ"
+    </Viro3DObject>
+  
 
   </ViroARScene>
   )
 }
 
 
-export default function App() {
+export default() => {
+  const [object, setObject]=useState('skull')
   return(
     <View style={styles.mainView}>
     <ViroARSceneNavigator
     initialScene={{
       scene:InitialScene
     }}
+    viroAppProps={{"object":object}}
     style={{flex:1}}
     />
     <View style={styles.controlsView}>
-      <TouchableOpacity><Text>Display Skull</Text></TouchableOpacity>
-      <TouchableOpacity>Display TV</TouchableOpacity>
+      <TouchableOpacity onPress={()=>setObject('skull')}>
+        <Text style={styles.Text}>Display Skull</Text>
+        </TouchableOpacity>
+      <TouchableOpacity onPress={()=>setObject('skull')}>
+        <Text style={styles.Text}>Display TV</Text>
+        </TouchableOpacity>
 
     </View>
 
@@ -78,6 +82,13 @@ var styles = StyleSheet.create({
     display :'flex',
     flexDirection:'row',
     justifyContent:'space-between'
+  },
+  text:{
+    margin: 20,
+    backgroundColor:'#9d9d9d',
+    padding:10,
+    fontWeight:'bold'
+
   }
   
 });
