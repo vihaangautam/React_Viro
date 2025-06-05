@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import{View,Text,TouchableOpacity, StyleSheet} from 'react-native';
 import {
   ViroARScene,
   ViroARSceneNavigator,
@@ -49,15 +50,34 @@ const InitialScene =()=>{
 
 export default function App() {
   return(
+    <View style={styles.mainView}>
     <ViroARSceneNavigator
     initialScene={{
       scene:InitialScene
     }}
     style={{flex:1}}
     />
+    <View style={styles.controlsView}>
+      <TouchableOpacity><Text>Display Skull</Text></TouchableOpacity>
+      <TouchableOpacity>Display TV</TouchableOpacity>
+
+    </View>
+
+    </View>
   );
 };
 
-const style = StyleSheet.create({
+var styles = StyleSheet.create({
+  mainView:{
+    flex:1
+  },
+  controlsView:{
+    width:'100%',
+    height:100,
+    backgroundColor: '#ffffff',
+    display :'flex',
+    flexDirection:'row',
+    justifyContent:'space-between'
+  }
   
 });
