@@ -10,6 +10,7 @@ import {
   ViroAnimations,
   Viro3DObject,
   ViroAmbientLight,
+  ViroARTrackingTargets,
 } from "@reactvision/react-viro";
 
 // This is the AR Scene that will render your 3D objects
